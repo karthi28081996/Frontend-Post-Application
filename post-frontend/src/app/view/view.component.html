@@ -1,0 +1,52 @@
+<nav class="navbar  navbar-expand-lg navbar-light bg-light"> <h3 style="color:rgb(250, 252, 253)"> Post Application</h3>
+  <hr>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end mr-auto" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-5" >
+      
+        <li class="nav-item not-active " >
+            <a class="nav-link " (click)="goToCreatepage()" style="color:paleturquoise!important;">Create Post </a>
+        </li>
+        <li class="nav-item not-active " >
+            <a class="nav-link " (click)="goToHomepage()" style="color:paleturquoise!important;">Homepage</a>
+        
+          </li>
+    </ul>
+  
+    
+  </div>
+</nav>
+
+    <div class="container mt-4" *ngIf="post">
+        <div class="card text-center ">
+              <div class="card-header" style="background: black;opacity:0.8;color: white" >
+                {{post.postName}}
+              </div>
+
+              <div class="card-body">
+                      
+                  <h6 class="card-title "  > <b>Status : </b><span style="color:dodgerblue"><b>{{post.postStatus}}</b> </span> </h6>
+          
+               
+                 <p class="card-text" style="color:grey">{{post.postDescription}}.</p>
+                 
+                 
+                      <a class="btn btn-warning m-2 "  (click)="goBack()" >Go Back</a>
+                    
+                      <a class="btn btn-danger m-2" (click)="delete()">Delete</a>
+                 
+                      <a class="btn btn-info m-2" (click)="goToEdit()" >Edit</a>
+                  
+                  
+                   
+              
+            
+              </div>
+              <div class="card-footer text-muted" style="background: black;opacity:0.9;color: white!important">
+                Created  on <b style="color:skyblue">{{post.createdOn}}</b>
+              </div>
+            </div>    
+          </div>

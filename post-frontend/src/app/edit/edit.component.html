@@ -1,0 +1,69 @@
+<nav class="navbar  navbar-expand-lg navbar-light bg-light"> <h3 style="color:rgb(250, 252, 253)"> Post Application</h3>
+  <hr>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end mr-auto" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-5" >
+      
+        <li class="nav-item not-active " >
+            <a class="nav-link "  (click)="goToHomepage()" style="color:paleturquoise!important;">Homepage </a>
+          </li>
+    </ul>
+  
+    
+  </div>
+</nav>
+
+
+<div class='container-fluid'>
+    <form  style="padding:4vw;" >
+      
+            <div class="form-group">
+              <label for="name"><b>Name of the post </b></label>
+              <input type="text" class="form-control" id="name"  name="name" [(ngModel)]="name" #nameId='ngModel'  placeholder="Enter name " required=true>
+              <div [hidden]="nameId.pristine || nameId.valid" class="alert alert-info" style="font-size: 12px" >
+                  <div *ngIf="nameId.errors?.required">
+                    Please enter name of the post
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="desc"><b>Description of the post </b></label>
+              <textarea class="form-control" rows="4" id="desc"  name="description" [(ngModel)]="description" #descr='ngModel'  placeholder="Enter description" required=true></textarea>
+              <div [hidden]="descr.pristine || descr.valid" class="alert alert-info" style="font-size: 12px" >
+                  <div *ngIf="descr.errors?.required">
+                    Please enter description of the post
+                  </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="category"><b>Category of the post</b></label>
+              <select  class="form-control " name="category" [(ngModel)]="category" #cat='ngModel' required=true>
+                <option *ngFor="let data of allCategory" [value]="data">{{data}}</option>
+              </select>
+             
+              <div [hidden]="cat.pristine || cat.valid" class="alert alert-info">
+                <div *ngIf="cat.errors?.required">
+                  Please enter category of the post
+                </div>
+            </div>  
+           </div>
+           <div class="form-group">
+            <label for="status"><b>Status of the post</b></label>
+            <select  class="form-control " name="status" [(ngModel)]="status" #stat='ngModel' required=true>
+              <option *ngFor="let data of allStatus" [value]="data">{{data}}</option>
+            </select>
+           
+            <div [hidden]="stat.pristine || stat.valid" class="alert alert-info">
+              <div *ngIf="stat.errors?.required">
+                Please enter status of the issue
+              </div>
+          </div>  
+          </div>
+            <button type="submit" class="btn btn-black w-40" (click)="updatePost()" >Update Post</button>
+
+    </form>
+  </div>
+

@@ -1,0 +1,60 @@
+<nav class="navbar  navbar-expand-lg navbar-light bg-light"> <h3 style="color:rgb(250, 252, 253)"> Post Application</h3>
+  <hr>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end mr-auto" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-5" >
+      
+        <li class="nav-item not-active " >
+            <a class="nav-link " (click)="goToCreatePage()" style="color:paleturquoise!important;">Create Post </a>
+        </li>
+    </ul>
+  
+    
+  </div>
+</nav>
+
+
+<div class="d-xl-flex flex-xl-nowrap d-sm-flex  flex-sm-wrap" >
+   
+    <div class="container mt-5" *ngIf='allPost;else second' >
+        
+         <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder=" Start searching for a post   ">
+          
+    
+      <div class="d-xl-flex flex-xl-nowrap d-sm-flex mb-3 flex-sm-wrap  mt-3" >
+            <div class="p-1 mt-1 d-xl-flex flex-xl-wrap d-sm-flex flex-sm-wrap" >
+            <div *ngFor='let user of allPost | filter:searchText | paginate:{currentPage:p,itemsPerPage:12}'>
+                
+              <div class="card m-4">
+       
+                    <div class="card-body" >
+                        <h5 class="card-title" >{{user.postName | uppercase}}</h5>
+                      
+                        <span *ngIf="user.postStatus == 'Draft'" ><p class="card-text offline  justify-content-center"><b style="color:purple"></b>{{user.postStatus}}</p></span>
+                        
+                        <span *ngIf="user.postStatus == 'Published'" ><p class="card-text online  justify-content-center"><b style="color:purple"></b>{{user.postStatus}}</p></span>
+                       
+                        <hr style="border:1px solid darkgrey">
+                        
+                        <p class="card-text" style="color:black"><b style="color: purple;opacity:0.8">Category : </b>{{user.postCategory}}</p>
+                        <p class="card-text" style="color:black"><b style="color: b lack;opacity:0.8"></b> {{ user.postDescription | slice:0:80}}</p>
+                        <a (click)="goToRespectivePost(user.postId)" class="card-link p-2" style="color:whitesmoke;box-shadow:2px 2px 10px grey;background-color:slateblue;border-radius:5px">View Post >>></a>
+                    </div>
+                      
+                  </div>
+              
+          </div>
+          </div>
+     </div> 
+     
+        <pagination-controls (pageChange)="p=$event" class="my-pagination"></pagination-controls>
+    
+    </div>
+    
+    <ng-template #second > <div class="container mt-5" ><h4 style="text-align:center;color:purple;" class="mt-5">No Post found .Please create one</h4></div>
+    </ng-template>
+
+</div>  
